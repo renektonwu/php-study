@@ -108,7 +108,7 @@ echo "****字符串***字符串****字符串****字符串****字符串****字符
 $strA = "php doc";
 echo strlen($strA) . "\n";
 
-echo substr($strA,0, 1) . "\n";
+echo substr($strA, 0, 1) . "\n";
 
 
 /**
@@ -118,29 +118,77 @@ $lFalse = false;
 $lNull = NULL;
 if ($lFalse == $lNull) {
     echo "false equal NULL in value\n";
-}else{
+} else {
     echo "false not equal NULL in value\n";
 }
 
 if ($lFalse === $lNull) {
     echo "false equal NULL in type\n";
-}else{
+} else {
     echo "false not equal NULL in type\n";
 }
 
 /**
  * 递增递减运算符
+ * $i++
+ * $i--
+ * --$i
+ * ++$i
  */
+echo "********************递增递减运算符****************\n";
+$i = 0;
+
+echo $i++ . "\n"; // 先输出 后自增
+echo "i-> $i\n";
+echo ++$i . "\n"; // 先自增后输出
 
 
 /**
  * 逻辑运算符
- * 与或非
+ * 与 and
+ * 或 or ; 另一种写法 : |
+ * 非 !
  */
+echo "********************逻辑运算符****************\n";
+$logicVaria1 = 1;
+$logicVaria2 = 2;
+if ($logicVaria1 == 1 and $logicVaria2 == 2) {
+    echo "I am through and action.\n";
+}
+
+$logicVaria3 = 3;
+//if ($logicVaria1 == 1 or $logicVaria3 == 2) {
+if ($logicVaria1 == 1 | $logicVaria3 == 2) {
+    echo "I am through or action.\n";
+}
+
+$logicVaria4 = 3;
+if ($logicVaria4) {
+    echo "I am through true act.\n";
+}
+$logicVaria4 = 3;
+if (!$logicVaria4) {
+    echo "I am through true act.\n";
+} else {
+    echo "I am through false act.\n";
+}
+
 
 /**
  * 三元运算符
+ * (expr1) ? (expr2) : (expr3)
+ * 即 expr1 true 返回 expr2的结果，否则返回expr3的结果
  */
+echo "********************三元运算符****************\n";
+
+$thirdVar1 = 1;
+$thirdVar2 = 2;
+// 普通写法
+$thirdVar3 = ($thirdVar1 == $thirdVar2) ? 5 : 6;
+echo $thirdVar3 . PHP_EOL; // 等价写法： echo $thirdVar3 , PHP_EOL;
+$thirdVar4 = ($thirdVar1 == $thirdVar2) ? (1 == 2) : 6; // 此时$thirdVar4 为false 即和空值一样。
+echo $thirdVar4 . PHP_EOL; // 等价写法： echo $thirdVar3 , PHP_EOL;
+
 
 /**
  * 循环
@@ -149,6 +197,31 @@ if ($lFalse === $lNull) {
  * for
  * foreach
  */
+echo "********************循环****************\n";
+for ($i = 0; $i <= 9; $i++) {
+    echo $i, PHP_EOL;;
+}
+
+echo "****while****\n";
+
+$k = 0;
+while ($k <= 9) {
+    echo $k, PHP_EOL;
+    $k++;
+}
+
+echo "****do****while****\n";
+$j = 0;
+do {
+    echo $j, PHP_EOL;
+    $j++;
+} while ($j <= 9);
+
+echo "****foreach****\n";
+foreach (range(0, 9) as $number) {
+    echo $number, PHP_EOL;
+}
+
 
 /**
  * 判断
@@ -161,10 +234,23 @@ if ($lFalse === $lNull) {
 
 echo "****判断***判断****判断****判断****判断****判断****\n";
 if (1 == 2) {
-    echo "1 == 2";
+    echo "1 == 2\n";
 } else {
-    echo "1 != 2";
+    echo "1 != 2\n";
 }
+
+$wA = 2;
+switch ($wA) {
+    case 1:
+        echo "wa-> 1\n";
+        break;
+    case 2:
+        echo "wa-> 2\n";
+        break;
+    default:
+        echo "default\n";
+}
+
 
 /**
  * 超级全局变量
@@ -178,6 +264,23 @@ if (1 == 2) {
  * $_COOKIE
  * $_SESSION
  */
+echo "********************超级全局变量****************\n";
+//var_dump($GLOBALS); // 当前环境 所有的全局变量变量
+
+// $_SERVER 变量中可以得到
+// 1当前脚本的名字  ["SCRIPT_FILENAME"]=>string(11) "phpBase.php"
+// 2old (print) working directory   ["OLDPWD"]=> string(19) "/data/www/php-study"
+var_dump($_SERVER);
+
+//var_dump($_REQUEST); // 其他的用到再记录
+//var_dump($_POST);
+//var_dump($_GET);
+//var_dump($_FILES);
+//var_dump($_ENV);
+//var_dump($_COOKIE);
+//var_dump($_SESSION);
+
+
 
 /**
  * 魔术变量？？？
@@ -190,3 +293,13 @@ if (1 == 2) {
  * __METHOD__
  * __NAMESPACE__
  */
+
+
+/**
+ * 被引用的函数
+ *
+ */
+function test()
+{
+    echo "test\n";
+}
